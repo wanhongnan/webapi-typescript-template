@@ -11,6 +11,7 @@
     "debug": "nodemon --config nodemon-debug.json",
     "build prod": "rimraf dist && npm run build",
     "start prod": "node dist/main.js",
+    "starthot": "supervisor dist/main.js",
     "clear modules": "rimraf node_modules",
     "server": "node --inspect dist/server",
     "webpack": "rimraf dist && webpack --config webpack.config.js"

@@ -12,7 +12,7 @@
 
  
 import { IsInt, IsOptional, IsBase64, Length, Min } from "class-validator";
-import { ItemType } from "../../../src/utils/json.validation";
+import { ItemType } from "src/utils/json.validation";
 
 //洲信息
 export class UserDto {

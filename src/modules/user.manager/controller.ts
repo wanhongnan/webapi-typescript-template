@@ -13,10 +13,10 @@
 
 import { Controller,Post, Body, Get, UseGuards, Req } from '@nestjs/common';
 import { UserDtos } from './dto';
-import * as mdb from "../../../src/utils/mdb";
+import * as mdb from "src/utils/mdb";
 import { WriteOpResult } from 'mongodb';
 import { UserSchema } from './schema';
-import * as util from "../../../src/utils/util"
+import * as util from "src/utils/util"
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
