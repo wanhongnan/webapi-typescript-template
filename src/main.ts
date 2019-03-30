@@ -23,6 +23,9 @@ import express = require('express');
 import { from } from 'rxjs';
 import { INestApplication } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+
+
 var fs = require('fs'); 
 var http = require('http'); 
 var https = require('https'); 
@@ -43,6 +46,16 @@ function configApp(app: INestApplication){
   app.useGlobalFilters(new JsonExceptionFilter());
   app.useGlobalInterceptors(new JsonResultInterceptor());
   //app.useGlobalGuards(AuthGuard("bearer"));
+
+  //swagger
+  const options = new DocumentBuilder()
+    .setTitle('Template example')
+    .setDescription('The cats API description')
+    .setVersion('1.0')
+    .addTag('cats')
+    .build();
+  const document = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup('api', app, document);
 }
 
 async function bootstrap1() {

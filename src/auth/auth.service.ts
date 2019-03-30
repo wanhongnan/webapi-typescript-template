@@ -10,7 +10,7 @@ import { Injectable, UnauthorizedException, Req } from '@nestjs/common';
   选项不能设置为true,设置为true对代码进行混淆后，无法使用
  * *************************
 在 Controller 上使用
-        @Controller('win007/football')
+        @Controller('user')
         @UseGuards(AuthGuard("bearer"))     //使用OAuth 2.0 验证
         export default class {
           @Get("test")
