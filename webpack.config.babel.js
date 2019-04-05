@@ -32,7 +32,7 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },{
-        test: /.jso(n|n5)?$/,
+        test: /.json5?$/,
         use: 'json5-loader',
         exclude: /node_modules/,
       },
