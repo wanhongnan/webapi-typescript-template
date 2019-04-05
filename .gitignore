@@ -1,2 +1,6 @@
 /node_modules
 /logs
+/dist/configs.json
+/dist/secrets/cert.pem
+/dist/secrets/key.pem
+/dist/server.js

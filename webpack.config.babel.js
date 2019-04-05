@@ -31,6 +31,10 @@ module.exports = {
         test: /.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
+      },{
+        test: /.jso(n|n5)?$/,
+        use: 'json5-loader',
+        exclude: /node_modules/,
       },
     ],
   },
@@ -44,7 +48,7 @@ module.exports = {
     //new webpack.HotModuleReplacementPlugin(), 
     new webpack.DefinePlugin({}),
     new CopyWebpackPlugin([
-      {from: './configs.json', to: path.join(__dirname, 'dist/configs.json')},
+      {from: './configs.json5', to: path.join(__dirname, 'dist/configs.json5')},
       {from: './secrets/key.pem', to: path.join(__dirname, 'dist/secrets/key.pem')},
       {from: './secrets/cert.pem', to: path.join(__dirname, 'dist/secrets/cert.pem')}
     ]),

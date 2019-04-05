@@ -15,7 +15,8 @@ import { async } from "rxjs/internal/scheduler/async";
 import { resolve } from "url";
 
 const path = require('path');
-const jsonfile = require('jsonfile')
+const fs = require('fs');
+const JSON5 = require('json5');
 var data = {};
 
 /**
@@ -35,9 +36,10 @@ export type AppConfig = {
 
 export async function loadConfig() : Promise<boolean> {
   return new Promise((reslove,reject)=>{
-    const file = path.join(process.cwd(),'configs.json')
-    jsonfile.readFile(file, function (err, obj) {
+    const file = path.join(process.cwd(),'configs.json5')
+    fs.readFile(file, function (err, txt) {
       if (err) console.error(err)
+      var obj = JSON5.parse(txt);
       Object.assign(data,obj);
       console.dir(data);
       reslove(true);
