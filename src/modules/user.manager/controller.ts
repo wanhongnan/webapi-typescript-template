@@ -20,7 +20,7 @@ import * as util from "src/utils/util"
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
-@UseGuards(AuthGuard("bearer"))     //使用OAuth 2.0 验证
+// @UseGuards(AuthGuard("bearer"))     //使用OAuth 2.0 验证
 export default class {
   constructor(){}
 
