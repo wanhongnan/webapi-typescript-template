@@ -25,6 +25,8 @@ interface Array<T> {
     sortByAsc: { <U = string | number | ICompare<T>>(callback?: (value: T, index: number, objs: readonly T[]) => U, ): T[]; };
     sortByDsc: { <U = string | number | ICompare<T>>(callback?: (value: T, index: number, objs: readonly T[]) => U, ): T[]; };
     clone: { (): T[]; };
+    any: { (predicate: (value: T, index: number, objs: readonly T[]) => boolean): boolean; };
+    all: { (predicate: (value: T, index: number, objs: readonly T[]) => boolean): boolean; };
 }
 
 interface ICompare<T>{

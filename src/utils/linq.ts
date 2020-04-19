@@ -170,6 +170,32 @@ Array.prototype.sortByDsc = function<T extends any>(callback?): T[]{
     return ret;
 }
 
+Array.prototype.any = function(predicate):boolean{
+    var arr = this as Array<any>;
+    if(predicate === undefined){
+        return true;
+    }else if(arr.length == 0){
+        return true;
+    }
+    var idx = arr.findIndex((value: any, index: number, objs: any[])=>predicate(value, index, objs));
+    if(idx == -1)return false;
+    return true;
+}
+
+Array.prototype.all = function(predicate):boolean{
+    var arr = this as Array<any>;
+    if(predicate === undefined){
+        return true;
+    }else if(arr.length == 0){
+        return true;
+    }
+    var ret = true;
+    arr.forEach((value,index,objs)=>{
+        ret = ret && predicate(value, index, objs);
+    })
+    return ret;
+}
+
 Array.prototype.clone = function(): any[]{
     var arrS = this as Array<any>;
     var ret = new Array<any>();
