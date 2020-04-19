@@ -19,6 +19,7 @@ import { UserSchema } from './schema';
 import * as util from "src/utils/util"
 import linq = require('src/utils/linq');
 import { AuthGuard } from '@nestjs/passport';
+import { compare } from 'src/utils/linq';
 
 @Controller('user')
 // @UseGuards(AuthGuard("bearer"))     //使用OAuth 2.0 验证
@@ -53,7 +54,18 @@ class SchoolTest{
   school = new School();
   run(){
     this.school.init(1);
-    var students = this.school.classes.where(f=> f.classIdx > 2 && f.classIdx <= 5).expend(f=>f.students).where(f=> f.studentIdx > 5).select(f=>f.studentIdx);
+    var students = this.school.classes.where(f=> f.classIdx > 2 && f.classIdx <= 5).expend(f=>f.students).where(f=> f.studentIdx > 5).maxBy(f=>f.studentIdx);
+    var su = this.school.classes.expend(f=>f.students).where(f=>f.studentIdx>5).groupBy(f=>f.code).each(f=>f.key = f.key || 0).sortByAsc(f=>f.key);
+
+    var teams = [
+      {teamNames:[1,2,3,4,1,1,1]},
+      {teamNames:[1,2,3,4,1,1,1]},
+      {teamNames:[1,2,3,4,1,1,1]},
+    ]
+    teams.forEach(f=>{
+      f.teamNames = f.teamNames.distinct();
+    })
+    var d = teams.expend(f=>f.teamNames).distinct().first();
     console.log(students);
   }
 }
@@ -88,7 +100,12 @@ class Sclass{
   }
 }
 
-class Student{
+class Student implements ICompare<Student> {
+  compare(value: Student): number {
+    return compare(this,value);
+  }
+  code: number;
+  age: number;
   studentIdx : number;
   studentName: string  = "";
   init(i:number){
@@ -96,3 +113,5 @@ class Student{
     this.studentName = `student:${i}`;
   }
 }
+
+
