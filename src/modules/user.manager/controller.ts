@@ -53,7 +53,7 @@ class SchoolTest{
   school = new School();
   run(){
     this.school.init(1);
-    var students = this.school.classes.where(f=> f.classIdx > 2 && f.classIdx <= 5).expend(f=>f.students).where(f=> f.studentIdx > 5).map(f=>f.studentIdx);
+    var students = this.school.classes.where(f=> f.classIdx > 2 && f.classIdx <= 5).expend(f=>f.students).where(f=> f.studentIdx > 5).select(f=>f.studentIdx);
     console.log(students);
   }
 }
@@ -61,7 +61,7 @@ class SchoolTest{
 class School{
   schoolName: string  = "";
   schoolIdx : number;
-  classes : Array<Sclass> = [];
+  classes : Array<Sclass> = new Array<Sclass>();
   init(i:number){
     this.schoolIdx = i;
     this.schoolName = `class:${i}`;
