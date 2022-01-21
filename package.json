@@ -28,7 +28,7 @@
     "gridfs-stream": "^1.1.1",
     "json5": "^2.1.0",
     "jsonfile": "^5.0.0",
-    "log4js": "^4.0.2",
+    "log4js": "^6.4.0",
     "mongodb": "^3.2.2",
     "passport": "^0.4.0",
     "passport-http-bearer": "^1.0.1",
